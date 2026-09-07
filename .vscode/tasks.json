@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Jekyll: Build Site",
+			"command": "bundle exec jekyll build",
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"type": "shell",
+			"label": "Jekyll: Serve Site",
+			"command": "bundle exec jekyll serve --incremental",
+			"group": "build",
+			"problemMatcher": []
+		}
+	]
+}
