@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthBrief — Clinical docs in. Structured data out.</title>
+<meta name="description" content="HealthBrief turns clinical documents into structured, coded, FHIR-ready data — entirely on-premise. Nothing leaves your environment.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2310203F'/%3E%3Ctext x='50' y='68' font-family='Poppins,sans-serif' font-weight='800' font-size='58' fill='%2312A28C' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ===================== NAV ===================== -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="logo">Health<span>Brief</span><sup>™</sup></div>
+    <nav aria-label="Primary">
+      <a href="#request" class="nav-cta">Request free pilot</a>
+      <a href="#performance">Performance</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#perimeter">Security</a>
+      <a href="#customers">Who it helps</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="hero-kicker">First pilot phase — free</p>
+        <h1>Clinical docs in.<br>Structured data out.</h1>
+        <p class="hero-sub">HealthBrief makes clinical documents queryable and coded on your own servers—without sending clinical data to an external API.</p>
+        <div class="hero-proof" aria-label="Key benefits">
+          <span>On-premise</span>
+          <span>FHIR / LOINC</span>
+          <span>Source traceability</span>
+        </div>
+      </div>
+
+      <div class="request-card" id="request">
+        <div class="request-card-head">
+          <span class="request-label">Free technical validation</span>
+          <h2>See it work on your document types</h2>
+          <p>Tell us where clinical documents slow your team down. We’ll reply with a focused pilot proposal.</p>
+        </div>
+        <form id="pilot-request-form" novalidate>
+          <div class="form-grid">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" maxlength="100" required>
+            </label>
+            <label>
+              <span>Work email</span>
+              <input type="email" name="email" autocomplete="email" inputmode="email" maxlength="160" required>
+            </label>
+            <label>
+              <span>Industry</span>
+              <select name="industry" required>
+                <option value="">Choose one</option>
+                <option>Clinic or diagnostic centre</option>
+                <option>Hospital</option>
+                <option>Health-tech platform</option>
+                <option>EHR / LIS provider</option>
+                <option>System integrator</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>
+              <span>Organisation <em>optional</em></span>
+              <input type="text" name="organisation" autocomplete="organization" maxlength="140">
+            </label>
+            <label class="form-wide">
+              <span>Pilot objective or workflow bottleneck <em>optional</em></span>
+              <textarea name="message" rows="3" maxlength="1200" placeholder="For example: reduce manual entry from outside lab reports"></textarea>
+            </label>
+          </div>
+          <label class="form-trap" aria-hidden="true">
+            Website
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </label>
+          <input type="hidden" name="startedAt" id="form-started-at">
+          <button class="btn btn-primary form-submit" type="submit">Request the free pilot</button>
+          <p class="form-note">We’ll use these details only to respond to your request. Please do not include patient information or clinical documents.</p>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROBLEM STATEMENT ===================== -->
+  <section class="problem">
+    <div class="wrap">
+      <p class="problem-line">Readable by people. Invisible to your software.</p>
+      <p class="problem-detail">Outside reports need retyping, patient uploads remain flat files, and legacy archives cannot be searched or reused.</p>
+    </div>
+  </section>
+
+  <!-- ===================== PERFORMANCE ===================== -->
+  <section class="performance" id="performance">
+    <div class="wrap">
+      <div class="performance-heading">
+        <div>
+          <h2>Performance you can validate</h2>
+          <p class="section-sub">Measured processing performance and pilot-ready outcomes, with every value traceable back to its source.</p>
+        </div>
+        <a href="#request" class="text-link">Test it on your documents</a>
+      </div>
+
+      <div class="performance-grid">
+        <article class="performance-card">
+          <strong>~90%</strong>
+          <h3>Less handling time</h3>
+          <p>Estimated reduction per document against a manual processing baseline.</p>
+        </article>
+        <article class="performance-card">
+          <strong>~10s</strong>
+          <h3>Per document</h3>
+          <p>Average single-stream processing on a standard GPU. CPU deployment is also supported.</p>
+        </article>
+        <article class="performance-card">
+          <strong>99.3%</strong>
+          <h3>Extraction accuracy</h3>
+          <p>Every extracted value remains linked to its source document and page.</p>
+        </article>
+        <article class="performance-card">
+          <strong>FHIR / LOINC</strong>
+          <h3>Standardised output</h3>
+          <p>Coded data ready for longitudinal use, FSE 2.0, and EHDS exchange.</p>
+        </article>
+      </div>
+      <p class="performance-note">Processing time is measured single-stream on a standard GPU; CPU deployment runs more slowly. Handling-time reduction is an estimate against a comparable manual baseline.</p>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="pipeline-section" id="how-it-works">
+    <div class="wrap">
+      <h2>What actually happens to your documents</h2>
+      <p class="section-sub">A three-step pipeline turns raw documents into coded, queryable clinical data.</p>
+
+      <div class="pipeline-diagram">
+        <div class="pipe-inputs">
+          <div class="input-card">Lab docs<span>Native or scanned</span></div>
+          <div class="input-card">Clinical reports<span>Mixed formats</span></div>
+        </div>
+
+        <div class="pipe-flow">
+          <div class="pipe-node" data-step="1">
+            <div class="pipe-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            </div>
+            <b>Classify</b><span>Document type</span>
+          </div>
+          <div class="ocr-link">
+            <svg class="ocr-up" viewBox="0 0 24 24" fill="none" stroke="#12A28C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V6"/><path d="M6 12l6-6 6 6"/></svg>
+            <div class="ocr-tag">OCR — for scanned docs</div>
+          </div>
+          <div class="pipe-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#12A28C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+          <div class="pipe-node" data-step="2">
+            <div class="pipe-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 14h4M9 17h6"/></svg>
+            </div>
+            <b>Extract</b><span>Values · units · flags</span>
+          </div>
+          <div class="pipe-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#12A28C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+          <div class="pipe-node" data-step="3">
+            <div class="pipe-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="m20.6 12.6-8-8a2 2 0 0 0-1.4-.6H4a2 2 0 0 0-2 2v7.2c0 .5.2 1 .6 1.4l8 8a2 2 0 0 0 2.8 0l7.2-7.2a2 2 0 0 0 0-2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg>
+            </div>
+            <b>Standardize</b><span>LOINC / FHIR</span>
+          </div>
+        </div>
+
+        <div class="pipe-outputs">
+          <div class="output-row"><span>TSH</span><em>2.1–4.8 mIU/L</em></div>
+          <div class="output-row"><span>Free T4</span><em>14.2 pmol/L</em></div>
+          <div class="output-row"><span>HbA1c</span><em>6.4%</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PERIMETER / TRUST ===================== -->
+  <section class="perimeter" id="perimeter">
+    <div class="wrap">
+      <h2>Nothing leaves your environment.</h2>
+      <p class="section-sub light">HealthBrief runs entirely inside your infrastructure. No document, value, or byte of derived data ever crosses your perimeter.</p>
+
+      <div class="manifest">
+        <div class="manifest-header">Your infrastructure</div>
+        <ul class="manifest-list">
+          <li>No external API</li>
+          <li>No cloud AI vendor</li>
+          <li>No cross-border transfer</li>
+          <li>No internet access after installation</li>
+          <li>No DPA to negotiate</li>
+          <li>No sub-processor to declare</li>
+          <li>Nothing new for your DPIA</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BUILT FOR ===================== -->
+  <section class="built-for" id="customers">
+    <div class="wrap">
+      <h2>Where the pain shows up</h2>
+      <p class="section-sub">Different teams meet the same problem: valuable clinical information trapped inside documents.</p>
+      <div class="use-cases">
+        <div class="use-case">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0E8A77" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span class="customer-type">Clinics &amp; diagnostic centres</span>
+          <h3>Outside reports still need retyping</h3>
+          <p>Documents from another clinic, lab, or hospital arrive as PDFs, leaving staff to key the information in manually.</p>
+          <div class="customer-outcome"><span>With HealthBrief</span>Structured data enters your workflow automatically.</div>
+        </div>
+        <div class="use-case">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0E8A77" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+          <span class="customer-type">Health-tech platforms</span>
+          <h3>Patient uploads become dead files</h3>
+          <p>Reports are collected successfully but their clinical values cannot power search, trends, or product features.</p>
+          <div class="customer-outcome"><span>With HealthBrief</span>Uploads become reusable longitudinal data.</div>
+        </div>
+        <div class="use-case">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0E8A77" stroke-width="1.8"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+          <span class="customer-type">EHR / LIS &amp; integrators</span>
+          <h3>Mixed formats stall integration</h3>
+          <p>Legacy archives and inbound documents stay invisible to systems or require expensive manual re-entry projects.</p>
+          <div class="customer-outcome"><span>With HealthBrief</span>Archives become coded, queryable, and traceable.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PILOT PATH ===================== -->
+  <section class="pilot" id="pilot">
+    <div class="wrap">
+      <h2>First pilot phase — free</h2>
+      <p class="section-sub">Technical validation on your own document types, with success metrics agreed up front.</p>
+
+      <div class="pilot-steps">
+        <div class="pilot-step">
+          <div class="pilot-num">1</div>
+          <div><b>Technical validation</b><span>Prove the pipeline on your real document types.</span></div>
+        </div>
+        <div class="pilot-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#12A28C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+        <div class="pilot-step">
+          <div class="pilot-num">2</div>
+          <div><b>Controlled environment</b><span>Run inside a defined, contained deployment.</span></div>
+        </div>
+        <div class="pilot-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#12A28C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+        <div class="pilot-step">
+          <div class="pilot-num">3</div>
+          <div><b>Production deployment</b><span>Move to full use once results are validated.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT / FOOTER ===================== -->
+  <footer class="site-footer" id="contact">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <div class="logo">Health<span>Brief</span><sup>™</sup></div>
+        <p>The missing layer to longitudinal data collection.</p>
+      </div>
+
+      <div class="footer-contact">
+        <a href="mailto:healthbriefai@gmail.com">healthbriefai@gmail.com</a>
+        <a href="mailto:mat.cip43@gmail.com">mat.cip43@gmail.com</a>
+        <a href="tel:+393345967147">+39 334 596 7147 (Italy)</a>
+        <a href="tel:+447464351218">+44 7464 351218 (UK)</a>
+        <a href="https://www.linkedin.com/in/matteo-c-ba30ab122/" target="_blank" rel="noopener">LinkedIn — Matteo Ciprian</a>
+      </div>
+
+      <div class="footer-qr">
+        <img src="assets/img/qr-linkedin-com-in-matteo-c-ba30ab122.svg" alt="QR code to Matteo Ciprian's LinkedIn profile" width="88" height="88">
+        <span>Scan to connect</span>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© <span id="year"></span> HealthBrief</span>
+      <span>Cofounded by Matteo Ciprian</span>
+    </div>
+  </footer>
+
+</main>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
