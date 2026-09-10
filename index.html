@@ -19,11 +19,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 <script>
-  // Apply saved dark/light preference (or system preference) before first paint to avoid flash
+  // Apply dark mode before first paint to avoid flash.
+  // Only sets data-theme="dark"; when t==='light' the !t guard correctly skips
+  // the system-preference check so no dark mode is applied.
   (function(){
     var t=localStorage.getItem('hb-theme');
-    if(t){document.documentElement.setAttribute('data-theme',t);}
-    else if(window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark');}
+    if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches)){
+      document.documentElement.setAttribute('data-theme','dark');
+    }
   })();
 </script>
 </head>

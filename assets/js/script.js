@@ -35,14 +35,26 @@ document.getElementById('year').textContent = new Date().getFullYear();
     btn.addEventListener('click', function () {
       const isDark = root.getAttribute('data-theme') === 'dark';
       const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const next = isDark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      // If the target state matches the system preference, remove the override
-      // so the system listener can re-activate in the future.
-      if ((next === 'dark' && systemDark) || (next === 'light' && !systemDark)) {
-        localStorage.removeItem(STORAGE_KEY);
+      if (isDark) {
+        // Switch to light
+        root.removeAttribute('data-theme');
+        if (systemDark) {
+          // System wants dark but user picked light — save the override
+          localStorage.setItem(STORAGE_KEY, 'light');
+        } else {
+          // Already matches system — remove override so system listener re-activates
+          localStorage.removeItem(STORAGE_KEY);
+        }
       } else {
-        localStorage.setItem(STORAGE_KEY, next);
+        // Switch to dark
+        root.setAttribute('data-theme', 'dark');
+        if (!systemDark) {
+          // System wants light but user picked dark — save the override
+          localStorage.setItem(STORAGE_KEY, 'dark');
+        } else {
+          // Already matches system — remove override so system listener re-activates
+          localStorage.removeItem(STORAGE_KEY);
+        }
       }
     });
   });
