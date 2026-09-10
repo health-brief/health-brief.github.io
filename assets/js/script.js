@@ -1,6 +1,65 @@
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// ---- Dark mode toggle ----
+// Reads preference from localStorage; falls back to system preference.
+// Toggle flips between dark and light, persisting the choice.
+(function () {
+  const root = document.documentElement;
+  const STORAGE_KEY = 'hb-theme';
+
+  // Ensure system preference is reflected when no saved choice exists
+  if (!localStorage.getItem(STORAGE_KEY)) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      root.setAttribute('data-theme', 'dark');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+  }
+
+  // Keep in sync if the system preference changes and no override is saved
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      if (e.matches) {
+        root.setAttribute('data-theme', 'dark');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    btn.addEventListener('click', function () {
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (isDark) {
+        // Switch to light
+        root.removeAttribute('data-theme');
+        if (systemDark) {
+          // System wants dark but user picked light — save the override
+          localStorage.setItem(STORAGE_KEY, 'light');
+        } else {
+          // Already matches system — remove override so system listener re-activates
+          localStorage.removeItem(STORAGE_KEY);
+        }
+      } else {
+        // Switch to dark
+        root.setAttribute('data-theme', 'dark');
+        if (!systemDark) {
+          // System wants light but user picked dark — save the override
+          localStorage.setItem(STORAGE_KEY, 'dark');
+        } else {
+          // Already matches system — remove override so system listener re-activates
+          localStorage.removeItem(STORAGE_KEY);
+        }
+      }
+    });
+  });
+})();
+
 // One deliberate reveal moment: pipeline nodes light up in sequence
 // the first time the diagram scrolls into view. No per-card fade elsewhere.
 const pipeline = document.querySelector('.pipeline-diagram');
