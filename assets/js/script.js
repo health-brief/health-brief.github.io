@@ -3,47 +3,47 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 // ---- Dark mode toggle ----
 // Reads preference from localStorage; falls back to system preference.
-// Cycles: system → dark → light → system …
+// Toggle flips between dark and light, persisting the choice.
 (function () {
   const root = document.documentElement;
   const STORAGE_KEY = 'hb-theme';
 
-  function applyTheme(saved) {
-    if (saved === 'dark') {
+  // Ensure system preference is reflected when no saved choice exists
+  if (!localStorage.getItem(STORAGE_KEY)) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       root.setAttribute('data-theme', 'dark');
-    } else if (saved === 'light') {
-      root.setAttribute('data-theme', 'light');
     } else {
       root.removeAttribute('data-theme');
     }
   }
 
-  // Apply saved preference immediately (before paint)
-  applyTheme(localStorage.getItem(STORAGE_KEY));
+  // Keep in sync if the system preference changes and no override is saved
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      if (e.matches) {
+        root.setAttribute('data-theme', 'dark');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+    }
+  });
 
   document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById('theme-toggle');
     if (!btn) return;
 
     btn.addEventListener('click', function () {
-      const current = localStorage.getItem(STORAGE_KEY);
+      const isDark = root.getAttribute('data-theme') === 'dark';
       const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      let next;
-      if (!current) {
-        // following system — force opposite
-        next = systemDark ? 'light' : 'dark';
-      } else if (current === 'dark') {
-        next = 'light';
-      } else {
-        // current === 'light' — go back to system
-        next = null;
-      }
-      if (next) {
-        localStorage.setItem(STORAGE_KEY, next);
-      } else {
+      const next = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      // If the target state matches the system preference, remove the override
+      // so the system listener can re-activate in the future.
+      if ((next === 'dark' && systemDark) || (next === 'light' && !systemDark)) {
         localStorage.removeItem(STORAGE_KEY);
+      } else {
+        localStorage.setItem(STORAGE_KEY, next);
       }
-      applyTheme(next);
     });
   });
 })();

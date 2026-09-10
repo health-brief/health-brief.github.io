@@ -30,23 +30,7 @@
 }
 
 /* ---- dark token overrides ---- */
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:           #0D1B2A;
-    --bg-subtle:    #091624;
-    --bg-mint:      #0E2233;
-    --bg-dark-sec:  #060F1C;
-    --surface:      #122033;
-    --border:       #1D3249;
-    --text-primary: #DDE8F5;
-    --text-muted:   #8099B6;
-    --text-on-dark: #B8CEE4;
-    --header-bg:    rgba(13,27,42,0.92);
-    --input-bg:     #0D1B2A;
-    --input-border: #1D3249;
-    --noise-line:   #1D3249;
-  }
-}
+/* Applied by JS on load (reads system preference + localStorage) and on toggle */
 [data-theme="dark"]{
   --bg:           #0D1B2A;
   --bg-subtle:    #091624;
@@ -121,13 +105,9 @@ nav a:hover{ color:var(--text-primary); }
 .theme-toggle:hover{ border-color:var(--teal); color:var(--teal); }
 .theme-toggle svg{ width:18px; height:18px; pointer-events:none; }
 .theme-toggle .icon-sun{ display:none; }
-/* show sun in dark mode, moon in light mode */
+/* show sun icon when dark mode is active */
 [data-theme="dark"] .theme-toggle .icon-moon{ display:none; }
 [data-theme="dark"] .theme-toggle .icon-sun{ display:block; }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .theme-toggle .icon-moon{ display:none; }
-  :root:not([data-theme="light"]) .theme-toggle .icon-sun{ display:block; }
-}
 
 /* ---------------- buttons ---------------- */
 .btn{
@@ -421,7 +401,7 @@ section h2{ font-size:clamp(26px,3.2vw,36px); letter-spacing:-0.01em; }
   .footer-qr{ align-items:flex-start; }
 
   nav[aria-label="Primary"]{ gap:16px; }
-  nav a:not(.nav-cta):not(.theme-toggle){ display:none; }
+  nav a:not(.nav-cta){ display:none; }
 }
 
 @media (max-width: 600px){
